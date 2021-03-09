@@ -1,11 +1,21 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import MainPage from "./pages/MainPage/MainPage";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-const App = () => <h1>Inint webpack</h1>;
+import "./index.scss";
+import * as PokemonsData from "./public/db.json";
+
+type PokemonsData = {
+    pokemons: {
+        name: string;
+        id: number;
+    }[];
+};
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+    <React.StrictMode>
+        <MainPage {...PokemonsData} />
+    </React.StrictMode>,
+    document.getElementById("root")
 );

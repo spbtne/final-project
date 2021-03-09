@@ -1,0 +1,45 @@
+.page-wrapper {
+    padding: 2%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.navigation {
+    &__list {
+        display: flex;
+        justify-content: space-around;
+        align-items: baseline;
+        height: 100%;
+    }
+
+    &__item {
+        width: calc(100% / 3);
+        height: 100%;
+        padding: 5px;
+
+        font-size: 1.1rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.main-wrapper {
+    flex-grow: 1;
+
+    padding: 2%;
+}
+
+.allPokemons {
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    &__item {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}
