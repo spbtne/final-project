@@ -1,23 +1,24 @@
 import React from "react";
-import { Button } from "react-bootstrap";
-
-type CardInfo = {
-    pokemonsName: string;
-    pokemonId: number;
-};
+import { Button, Card } from "react-bootstrap";
+import { capitalize } from "../../utils/const";
+import { CardInfo } from "../../utils/interfaces";
 
 import "./PokemonCard.scss";
+
 const PokemonCard = (props: CardInfo): JSX.Element => {
     return (
-        <li className="allPokemons__item pokemonCard">
-            <div className="pokemonCard__title">{props.pokemonsName}</div>
-            <img
+        <Card className="allPokemons__item pokemonCard">
+            <Card.Img
                 src={require(`../../public/${props.pokemonId}.png`)}
-                alt={props.pokemonsName}
-                className="pokemonCard__img"
+                alt={capitalize(props.pokemonsName)}
             />
-            <Button variant="primary">Catch me</Button>
-        </li>
+            <Card.Body>
+                <Card.Title className="text-center">
+                    {capitalize(props.pokemonsName)}
+                </Card.Title>
+                <Button variant="primary">Catch me</Button>
+            </Card.Body>
+        </Card>
     );
 };
 

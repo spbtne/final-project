@@ -1,28 +1,48 @@
 import React from "react";
+import { Nav } from "react-bootstrap";
 
 import AllPokemonsList from "../../components/AllPokemonsList/AllPokemonsList";
 
 import "./MainPage.scss";
 
-type PokemonsData = {
-    pokemons: {
-        name: string;
-        id: number;
-    }[];
-};
-
-const MainPage = (props: PokemonsData): JSX.Element => {
+const MainPage = (): JSX.Element => {
     return (
         <div className="page-wrapper">
-            <nav className="navigation-wrapper">
-                <ul className="navigation__list">
-                    <li className="navigation__item">Main</li>
-                    <li className="navigation__item">Current pokemon</li>
-                    <li className="navigation__item">Сatched pokemons</li>
-                </ul>
-            </nav>
+            <Nav
+                fill
+                variant="tabs"
+                defaultActiveKey="/main"
+                className="navigation__list">
+                <Nav.Item className="navigation__item">
+                    <Nav.Link
+                        href="/main"
+                        onSelect={(eventKey, event) => {
+                            event.preventDefault();
+                        }}>
+                        Main page
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item className="navigation__item">
+                    <Nav.Link
+                        href="/currentPokemon"
+                        onSelect={(eventKey, event) => {
+                            event.preventDefault();
+                        }}>
+                        Current pokemon
+                    </Nav.Link>
+                </Nav.Item>
+                <Nav.Item className="navigation__item">
+                    <Nav.Link
+                        href="/cacthedPokemons"
+                        onSelect={(eventKey, event) => {
+                            event.preventDefault();
+                        }}>
+                        Сatched pokemons
+                    </Nav.Link>
+                </Nav.Item>
+            </Nav>
             <main className="main-wrapper">
-                <AllPokemonsList {...props} />
+                <AllPokemonsList />
             </main>
         </div>
     );

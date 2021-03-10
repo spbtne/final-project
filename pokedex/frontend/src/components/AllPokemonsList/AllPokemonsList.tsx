@@ -1,42 +1,22 @@
 import React, { useEffect, useState } from "react";
 import PokemonCard from "../PokemonCard/PokemonCard";
 
-type CardArray = {
-    name: string;
-    id: number;
-}[];
+import { useSelector, useDispatch } from "react-redux";
+import { state_I } from "../../utils/interfaces";
+import { loadCards } from "../../actions/actions";
+import getPokemons from "../../actions/loading";
+import { Button } from "react-bootstrap";
 
-type PokemonsData = {
-    pokemons: {
-        name: string;
-        id: number;
-    }[];
-};
-
-const pokemonsOnPage: CardArray = [];
-const AllPokemonsList = (props: PokemonsData): JSX.Element => {
-    const AvaliableAmountOfPokemonsOnPage =
-        Math.floor(innerHeight / 400) * Math.floor(innerWidth / 200) * 2;
-
-    const loadPokemons = () => {
-        const currentAmountOfPokemons = pokemonsOnPage.length;
-        for (let i = 0; i < AvaliableAmountOfPokemonsOnPage; i++) {
-            pokemonsOnPage.push({
-                name: props.pokemons[i + currentAmountOfPokemons].name,
-                id: props.pokemons[i + currentAmountOfPokemons].id,
-            });
-        }
-    };
-
-    if (pokemonsOnPage.length === 0) {
-        loadPokemons();
-    }
+const AllPokemonsList = (): JSX.Element => {
+    const dispatch = useDispatch();
+    const pokemonsOnPage = useSelector((state: state_I) => state.existCards);
 
     const [pageNumber, setPageNumber] = useState(1);
 
     useEffect(() => {
-        loadPokemons();
-    });
+        const newPokemons = getPokemons(pageNumber);
+        dispatch(loadCards(newPokemons));
+    }, [dispatch, pageNumber]);
 
     return (
         <>
@@ -53,9 +33,15 @@ const AllPokemonsList = (props: PokemonsData): JSX.Element => {
                     }
                 })}
             </ul>
-            <button onClick={() => setPageNumber(pageNumber + 1)}>
-                Load more
-            </button>
+            <footer className="main_footer">
+                <Button
+                    className="btn_load-more"
+                    size="lg"
+                    type="priamry"
+                    onClick={() => setPageNumber(pageNumber + 1)}>
+                    Load more
+                </Button>
+            </footer>
         </>
     );
 };
