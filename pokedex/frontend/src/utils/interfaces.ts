@@ -16,6 +16,8 @@ interface state_I {
 interface CardInfo {
     pokemonsName: string;
     pokemonId: number;
+    key?: string;
+    children?: Element;
 }
 
 export type { cardsArray, stateActions_I, state_I, CardInfo };

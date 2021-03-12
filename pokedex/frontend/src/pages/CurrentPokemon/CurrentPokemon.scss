@@ -1,0 +1,12 @@
+.currentPokemon-wrapper {
+    height: 100%;
+
+    display: flex;
+    flex-grow: 1;
+
+    padding: 2%;
+    box-shadow: 0px 20px 20px 3px #007bff15;
+    border: 1px solid #d8dce081;
+    border-top: none;
+    background-color: #ffffff;
+}

@@ -1,59 +1,25 @@
-.page-wrapper {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-.page-wrapper {
-    .navigation__list {
-        padding-top: 1%;
-        background-color: #007bff10;
-        border-bottom: none;
-    }
-    .navigation__item {
-        a {
-            padding: 20px;
-        }
-        &:hover {
-            background-color: #007bff;
-            border-radius: 5px;
-            .active {
-                color: #495057;
-                cursor: inherit;
-            }
-            a {
-                color: white;
-            }
-        }
-    }
-}
 .main-wrapper {
-    flex-grow: 1;
-
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    flex-grow: 1;
 
-    padding: 2%;
-}
+    padding: 0 1%;
 
-.allPokemons {
-    &__list {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-    }
-    &__list .nav-tabs {
-        border-bottom: none;
-    }
-    &__item {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-    }
+    box-shadow: 0px 20px 20px 3px #007bff15;
+    border: 1px solid #d8dce081;
+    border-top: none;
+    background-color: #ffffff;
 }
 
 .main_footer {
     display: flex;
     justify-content: center;
+    padding: 10px;
+    min-height: 50px;
+    .btn_load-more {
+        min-width: 17rem;
+        line-height: 1.25;
+        margin-bottom: 10px;
+    }
 }

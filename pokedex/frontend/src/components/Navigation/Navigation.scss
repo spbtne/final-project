@@ -1,0 +1,28 @@
+.navigation__list {
+    border-bottom: none;
+}
+.navigation__item {
+    background-color: transparent;
+    border: 1px solid #d8dce081;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    a {
+        background-color: #007bff06;
+        padding: 20px 15px;
+        font-weight: 500;
+        border: none !important;
+
+        &:hover:not(.active) {
+            background-color: #007bff;
+
+            color: white;
+            .active {
+                color: #495057;
+                cursor: pointer;
+            }
+        }
+    }
+    &:not(:last-child) {
+        margin-right: 5px;
+    }
+}
