@@ -4,31 +4,28 @@ import { Button } from "react-bootstrap";
 
 import { state_I } from "../../utils/interfaces";
 import { loadCards } from "../../actions/actions";
-import getPokemons from "../../actions/loading"; //
-
-// const getPokemons = (pageNumber: number): cardsArray[] => {
-//     const currentAmountOfPokemons (Максимальное количество карточек на одном экране)=
-//         AmountOfPokemonsOneScreen * (pageNumber - 1);
-//     const freshPokemonsArray = [];
-//     for (let i = 0; i < AmountOfPokemonsOneScreen; i++) {
-//         freshPokemonsArray.push({
-//             name: PokemonsData.pokemons[i + currentAmountOfPokemons].name,
-//             id: PokemonsData.pokemons[i + currentAmountOfPokemons].id,
-//         });
-//     }
-//     return freshPokemonsArray;
-// };
+import getPokemons from "../../actions/loading";
 
 import PokemonCard from "../PokemonCard/PokemonCard";
+import { useIsMount } from "../../utils/useIsMount";
 
 const AllPokemonsList = (): JSX.Element => {
     const dispatch = useDispatch();
     const pokemonsOnState = useSelector((state: state_I) => state.existCards);
     const [pageNumber, setPageNumber] = useState(1);
     const newPokemons = getPokemons(pageNumber);
-    useEffect(() => {
-        console.log(history);
+
+    if (pokemonsOnState.length === 0) {
         dispatch(loadCards(newPokemons));
+    }
+
+    const isMount = useIsMount();
+
+    useEffect(() => {
+        if (!isMount) {
+            dispatch(loadCards(newPokemons));
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [pageNumber]);
 
     return (
