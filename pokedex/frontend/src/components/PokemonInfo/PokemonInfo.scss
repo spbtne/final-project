@@ -1,2 +1,17 @@
 .pokemonInfo {
+    &__description {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}
+.list-group-flush {
+    text-align: center;
+}
+
+.img-wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

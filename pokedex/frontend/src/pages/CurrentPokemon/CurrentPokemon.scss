@@ -1,12 +1,41 @@
 .currentPokemon-wrapper {
-    height: 100%;
-
     display: flex;
-    flex-grow: 1;
-
     padding: 2%;
     box-shadow: 0px 20px 20px 3px #007bff15;
     border: 1px solid #d8dce081;
     border-top: none;
     background-color: #ffffff;
+    flex-grow: 1;
+}
+
+.current-pokemon-frame {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 2.5% 5%;
+    margin: 0 auto;
+    border: 1px solid #d8dce081;
+    border-radius: 10px;
+}
+
+.pokemonInfo {
+    max-width: 350px;
+    padding: 25px;
+    &__description {
+        padding: 50px;
+        justify-content: space-around;
+        &-text {
+            max-width: 500px;
+            margin-top: auto;
+            margin-bottom: auto;
+            padding: 10px;
+            text-align: justify;
+        }
+    }
+}
+.button__let-go {
+    margin-top: auto;
+}
+.card-title {
+    text-align: center;
 }

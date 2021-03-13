@@ -1,8 +1,11 @@
 .allPokemons {
     &__list {
+        flex-grow: 1;
+
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
+        align-items: center;
         margin-bottom: 0;
     }
     &__list .nav-tabs {

@@ -48,7 +48,8 @@ const AllPokemonsList = (): JSX.Element => {
                     className="btn_load-more"
                     size="lg"
                     type="priamry"
-                    onClick={() => {
+                    onClick={(e) => {
+                        e.preventDefault();
                         setPageNumber(pageNumber + 1);
                     }}>
                     Load more

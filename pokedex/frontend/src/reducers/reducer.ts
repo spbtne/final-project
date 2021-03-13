@@ -1,8 +1,12 @@
-import { LOAD_CARDS } from "../actions/types";
+import { LOAD_CARDS, MOVE_TO_CURRENT_POKEMON } from "../actions/types";
 import { state_I, stateActions_I } from "../utils/interfaces";
 
 const initialState: state_I = {
     existCards: [],
+    currentPokemon: {
+        name: "",
+        id: 0,
+    },
 };
 
 const reducer = (
@@ -17,6 +21,10 @@ const reducer = (
             } else {
                 return state;
             }
+        }
+        case MOVE_TO_CURRENT_POKEMON: {
+            const currentPokemon = payload;
+            return { ...state, currentPokemon };
         }
         default: {
             return state;

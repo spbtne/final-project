@@ -7,32 +7,38 @@ import "./PokemonInfo.scss";
 
 const PokemonInfo = (props: CardInfo): JSX.Element => {
     return (
-        <>
-            <Card className=" pokemonInfo" style={{ width: "18rem" }}>
-                <Card.Img
-                    variant="top"
-                    src={require(`../../public/${props.pokemonId}.png`)}
-                    alt={capitalize(props.pokemonsName)}
-                />
+        <div className="current-pokemon-frame">
+            <Card className="pokemonInfo">
+                <div className="img-wrapper">
+                    <Card.Img
+                        src={require(`../../public/${props.pokemonId}.png`)}
+                        alt={capitalize(props.pokemonsName)}
+                        className="pokemonInfo__img"
+                    />
+                </div>
                 <Card.Body>
-                    <Card.Title className="text-center">
-                        {capitalize(props.pokemonsName)}
-                    </Card.Title>
-                    <Card.Text>
-                        Some quick example text to build on the card title and
-                        make up the bulk of the cards content.
-                    </Card.Text>
+                    <ListGroup horizontal="lg" className="list-group-flush">
+                        <ListGroupItem> height: 70</ListGroupItem>
+                        <ListGroupItem>weight: 320</ListGroupItem>
+                        <ListGroupItem>Not cathed</ListGroupItem>
+                    </ListGroup>
                 </Card.Body>
             </Card>
-            <div className="features">
-                <ListGroup className="list-group-flush">
-                    <ListGroupItem>Cras justo odio</ListGroupItem>
-                    <ListGroupItem>Dapibus ac facilisis in</ListGroupItem>
-                    <ListGroupItem>Vestibulum at eros</ListGroupItem>
-                </ListGroup>
-                <Button variant="primary">Let go</Button>
+            <div className="pokemonInfo__description">
+                <div className="card-title">
+                    <h1>{capitalize(props.pokemonsName)}</h1>
+                </div>
+                <div className="pokemonInfo__description-text">
+                    This Pokémon cannot be infatuated and is immune to
+                    captivate. If a Pokémon is infatuated and acquires this
+                    ability, its infatuation is cleared.
+                </div>
+
+                <Button variant="warning" className="button button__let-go">
+                    Let go
+                </Button>
             </div>
-        </>
+        </div>
     );
 };
 

@@ -1,8 +1,8 @@
 import { AmountOfPokemonsOneScreen } from "./../utils/const";
 import PokemonsData from "../public/db.json";
-import { cardsArray } from "../utils/interfaces";
+import { cardsItem } from "../utils/interfaces";
 
-const getPokemons = (pageNumber: number): cardsArray[] => {
+const getPokemons = (pageNumber: number): cardsItem[] => {
     const currentAmountOfPokemons =
         AmountOfPokemonsOneScreen * (pageNumber - 1);
     const freshPokemonsArray = [];

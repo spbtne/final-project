@@ -10,11 +10,13 @@
 
 body {
     background-color: #007bff10;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
 }
 
 .page-wrapper {
     margin: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin-top: -10px;
+    padding-top: 20px;
 }

@@ -1,4 +1,4 @@
-interface cardsArray {
+interface cardsItem {
     name: string;
     id: number;
 }
@@ -6,11 +6,12 @@ interface cardsArray {
 
 interface stateActions_I {
     type: string;
-    payload?: cardsArray[];
+    payload?: any;
 }
 
 interface state_I {
-    existCards: cardsArray[];
+    existCards: cardsItem[];
+    currentPokemon: cardsItem;
 }
 
 interface CardInfo {
@@ -20,4 +21,8 @@ interface CardInfo {
     children?: Element;
 }
 
-export type { cardsArray, stateActions_I, state_I, CardInfo };
+interface propsBoolean {
+    isDisabled: boolean;
+}
+
+export type { cardsItem, stateActions_I, state_I, CardInfo, propsBoolean };
