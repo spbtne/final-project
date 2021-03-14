@@ -10,14 +10,16 @@ const CurrentPokemon = (): JSX.Element => {
     const valueOfCurrentPokemon: cardsItem = useSelector(
         (state: state_I) => state.currentPokemon
     );
+console.log(valueOfCurrentPokemon )
     if (valueOfCurrentPokemon.id === 0) {
         return <Redirect exact from="/currentPokemon" to="/main" />;
     } else {
         return (
             <main className="currentPokemon-wrapper">
                 <PokemonInfo
-                    pokemonsName={valueOfCurrentPokemon.name}
-                    pokemonId={valueOfCurrentPokemon.id}
+                    name={valueOfCurrentPokemon.name}
+                    id={valueOfCurrentPokemon.id}
+                    isFree = {valueOfCurrentPokemon.isFree}
                 />
             </main>
         );

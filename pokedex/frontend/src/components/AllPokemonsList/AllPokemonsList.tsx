@@ -35,8 +35,9 @@ const AllPokemonsList = (): JSX.Element => {
                     if (item) {
                         return (
                             <PokemonCard
-                                pokemonsName={item.name}
-                                pokemonId={item.id}
+                                name={item.name}
+                                id={item.id}
+                                isFree={item.isFree}
                                 key={item.id.toString()}
                             />
                         );

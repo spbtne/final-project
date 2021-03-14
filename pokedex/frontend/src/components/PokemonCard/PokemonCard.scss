@@ -25,21 +25,26 @@
     margin: 15px;
 
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
 
     &__title {
         font-size: 1.25rem;
     }
     &__img {
         width: 100%;
+ 
     }
-    .card-title {
-        margin-bottom: 1.1rem;
-    }
+
     &:hover {
         border-color: #fbd743;
         box-shadow: 0px 0 5px 1px #fbd643a1;
-        cursor: pointer;
+        transition: all 0.5s;   
+        cursor: pointer;    
     }
+}
+
+.button__catch {
+   width: 100%;;
+   border-top-left-radius: 0;
+   border-top-right-radius: 0;
 }

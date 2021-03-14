@@ -11,6 +11,7 @@ import Navigation from "../components/Navigation/Navigation";
 import { cardsItem, state_I } from "../utils/interfaces";
 import CurrentPokemon from "./CurrentPokemon/CurrentPokemon";
 import MainPage from "./MainPage/MainPage";
+import CaughtPokemons from './CaughtPokemons/CaughtPokemons'
 
 const App = (): JSX.Element => {
     const valueOfCurrentPokemon: cardsItem = useSelector(
@@ -31,8 +32,8 @@ const App = (): JSX.Element => {
                     <Route path="/main" component={MainPage} />
                     <Route path="/currentPokemon" component={CurrentPokemon} />
                     <Route
-                        path="/catchedPokemons"
-                        render={() => <h1>Cacthed</h1>}
+                        path="/caughtPokemons"
+                        component={CaughtPokemons}
                     />
                 </Switch>
             </div>
