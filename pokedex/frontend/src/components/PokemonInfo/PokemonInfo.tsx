@@ -3,7 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
-import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import {
+    Button,
+    Card,
+    ListGroup,
+    ListGroupItem,
+    Spinner,
+} from "react-bootstrap";
 
 import { letGoPokemon } from "../../actions/actions";
 import { capitalize } from "../../utils/const";
@@ -37,9 +43,17 @@ const PokemonInfo = (props: card_I): JSX.Element => {
     };
 
     const [date, setDate] = useState(checkCatchDate(props));
-    const [pokemonHeight, setPokemonHeight] = useState("loading");
-    const [pokemonWeight, setPokemonWeight] = useState("loading");
-    const [pokemonDescription, setPokemonDescription] = useState("loading");
+    const [pokemonHeight, setPokemonHeight] = useState(
+        <Spinner animation="border" variant="primary" size="sm" />
+    );
+    const [pokemonWeight, setPokemonWeight] = useState(
+        <Spinner animation="border" variant="primary" size="sm" />
+    );
+    const [pokemonDescription, setPokemonDescription] = useState(
+        <div className="spinner-wrapper">
+            <Spinner animation="border" variant="primary" size="sm" />
+        </div>
+    );
 
     useEffect(() => {
         axios
