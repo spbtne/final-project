@@ -3,14 +3,14 @@ import { Button, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { catchPokemon, moveToCurrentPokemon } from "../../actions/actions";
 import { capitalize } from "../../utils/const";
-import { cardsItem, state_I } from "../../utils/interfaces";
+import { card_I, state_I } from "../../utils/interfaces";
 
 import "./PokemonCard.scss";
 
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 
-const PokemonCard = (props: cardsItem): JSX.Element => {
+const PokemonCard = (props: card_I): JSX.Element => {
     const history = useHistory();
     const dispatch = useDispatch();
     const caughtPokemons = useSelector(
@@ -20,8 +20,11 @@ const PokemonCard = (props: cardsItem): JSX.Element => {
 
     const pokemonInCaught = caughtPokemons.find((item) => item.id === props.id);
 
-    
-    const [buttonDisabled, setButtonDisabled] = useState(()=> {if (pokemonInCaught != undefined ){ return !pokemonInCaught.isFree}});
+    const [buttonDisabled, setButtonDisabled] = useState(() => {
+        if (pokemonInCaught != undefined) {
+            return !pokemonInCaught.isFree;
+        }
+    });
 
     return (
         <>
@@ -31,8 +34,7 @@ const PokemonCard = (props: cardsItem): JSX.Element => {
                     onClick={() => {
                         history.push("/currentPokemon");
                         dispatch(moveToCurrentPokemon(props));
-                    }}
-                >
+                    }}>
                     <Card.Header>
                         <Card.Img
                             src={require(`../../public/${props.id}.png`)}
@@ -53,8 +55,7 @@ const PokemonCard = (props: cardsItem): JSX.Element => {
                         dispatch(catchPokemon(props));
                         setButtonText("Caught");
                         setButtonDisabled(true);
-                    }}
-                >
+                    }}>
                     {buttonText}
                 </Button>
             </Card>

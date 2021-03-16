@@ -32,19 +32,18 @@
     }
     &__img {
         width: 100%;
- 
     }
 
     &:hover {
         border-color: #fbd743;
         box-shadow: 0px 0 5px 1px #fbd643a1;
-        transition: all 0.5s;   
-        cursor: pointer;    
+        transition: all 0.5s;
+        cursor: pointer;
     }
 }
 
 .button__catch {
-   width: 100%;;
-   border-top-left-radius: 0;
-   border-top-right-radius: 0;
+    width: 100%;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }

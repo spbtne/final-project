@@ -24,3 +24,16 @@
         margin-bottom: 10px;
     }
 }
+
+.main-page__loading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+    span {
+        flex-grow: 1;
+        font-size: 3rem;
+    }
+}

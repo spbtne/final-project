@@ -1,12 +1,14 @@
 import {
     LOAD_CARDS,
+    LOAD_DATA,
     MOVE_TO_CURRENT_POKEMON,
     CATCH_POKEMON,
     LETGO_POKEMON,
-} from "../actions/types";
+} from "../actions/actionTypes";
 import { state_I, stateActions_I } from "../utils/interfaces";
 
 const initialState: state_I = {
+    pokemonsData: [],
     existCards: [],
     currentPokemon: {
         name: "",
@@ -23,6 +25,14 @@ const reducer = (
     { type, payload }: stateActions_I
 ): state_I => {
     switch (type) {
+        case LOAD_DATA: {
+            if (payload) {
+                const pokemonsData = [...state.pokemonsData, ...payload];
+                return { ...state, pokemonsData };
+            } else {
+                return state;
+            }
+        }
         case LOAD_CARDS: {
             if (payload) {
                 const existCards = [...state.existCards, ...payload];
@@ -32,10 +42,11 @@ const reducer = (
             }
         }
         case MOVE_TO_CURRENT_POKEMON: {
- 
             const currentPokemonID = payload.id;
 
-            const isPokemonCaught = state.caughtPokemons.find(item => item.id === currentPokemonID)
+            const isPokemonCaught = state.caughtPokemons.find(
+                (item) => item.id === currentPokemonID
+            );
 
             let currentPokemon;
             if (isPokemonCaught != undefined) {
@@ -44,11 +55,7 @@ const reducer = (
                 currentPokemon = payload;
             }
 
-
             return { ...state, currentPokemon };
-
-            // const currentPokemon = payload;
-            // return {...state, currentPokemon}
         }
         case CATCH_POKEMON: {
             if (payload) {
@@ -58,7 +65,6 @@ const reducer = (
                 newPokemon.isFree = false;
                 newPokemon.catchDate = Date.now();
                 const caughtPokemons = state.caughtPokemons.concat(newPokemon);
-                console.log(caughtPokemons);
                 return { ...state, caughtPokemons };
             } else {
                 return state;
@@ -76,7 +82,6 @@ const reducer = (
                 if (pokemonInd != undefined) {
                     caughtPokemons.splice(pokemonInd, 1);
                 }
-                console.log(caughtPokemons)
                 return { ...state, caughtPokemons };
             } else {
                 return state;

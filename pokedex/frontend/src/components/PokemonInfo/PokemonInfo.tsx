@@ -1,19 +1,29 @@
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
-import React, {  useEffect, useState } from "react";
-import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
+
+import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
+
 import { letGoPokemon } from "../../actions/actions";
 import { capitalize } from "../../utils/const";
-import { cardsItem, state_I } from "../../utils/interfaces";
+import { card_I, state_I } from "../../utils/interfaces";
 
 import "./PokemonInfo.scss";
 
-const PokemonInfo = (props: cardsItem): JSX.Element => {
+const PokemonInfo = (props: card_I): JSX.Element => {
     const dispatch = useDispatch();
-    const caughtPokemons = useSelector((state: state_I) => state.caughtPokemons);
-    const checkCatchDate = (pokemon: cardsItem) => {
-    const pokemonInCaught = caughtPokemons.find((item) => item.id === pokemon.id);
-        if (pokemonInCaught != undefined && pokemonInCaught.catchDate != undefined) {
+    const caughtPokemons = useSelector(
+        (state: state_I) => state.caughtPokemons
+    );
+    const checkCatchDate = (pokemon: card_I) => {
+        const pokemonInCaught = caughtPokemons.find(
+            (item) => item.id === pokemon.id
+        );
+        if (
+            pokemonInCaught != undefined &&
+            pokemonInCaught.catchDate != undefined
+        ) {
             return (
                 <ListGroupItem>
                     {`Caught ${formatDistanceToNow(pokemonInCaught.catchDate, {
@@ -26,8 +36,30 @@ const PokemonInfo = (props: cardsItem): JSX.Element => {
         }
     };
 
-const [date, setDate] = useState(checkCatchDate(props));
+    const [date, setDate] = useState(checkCatchDate(props));
+    const [pokemonHeight, setPokemonHeight] = useState("loading");
+    const [pokemonWeight, setPokemonWeight] = useState("loading");
+    const [pokemonDescription, setPokemonDescription] = useState("loading");
 
+    useEffect(() => {
+        axios
+            .get(`https://pokeapi.co/api/v2/ability/${props.id}`)
+            .then((response) => {
+                const description = response.data.effect_entries.find(
+                    (item: { language: { name: string } }) => {
+                        return item.language.name === "en";
+                    }
+                );
+                setPokemonDescription(description.effect);
+            });
+        axios
+            .get(`https://pokeapi.co/api/v2/pokemon/${props.id}`)
+            .then((response) => {
+                setPokemonHeight(response.data.height);
+                setPokemonWeight(response.data.weight);
+            });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <div className="current-pokemon-frame">
@@ -41,8 +73,9 @@ const [date, setDate] = useState(checkCatchDate(props));
                 </div>
                 <Card.Body>
                     <ListGroup className="list-group-flush">
-                        <ListGroupItem> height: 70</ListGroupItem>
-                        <ListGroupItem>weight: 320</ListGroupItem>
+                        <ListGroupItem> id: {props.id}</ListGroupItem>
+                        <ListGroupItem> height: {pokemonHeight}</ListGroupItem>
+                        <ListGroupItem>weight: {pokemonWeight}</ListGroupItem>
                         {date}
                     </ListGroup>
                 </Card.Body>
@@ -52,19 +85,23 @@ const [date, setDate] = useState(checkCatchDate(props));
                     <h1>{capitalize(props.name)}</h1>
                 </div>
                 <div className="pokemonInfo__description-text">
-                    This Pokémon cannot be infatuated and is immune to
-                    captivate. If a Pokémon is infatuated and acquires this
-                    ability, its infatuation is cleared.
+                    {pokemonDescription}
                 </div>
 
-                <Button variant="warning" className="button button__let-go"  
-                onClick={() => {
-                            dispatch(letGoPokemon(props));
-                            const checkStorage = caughtPokemons.find(item => item.id === props.id)
-                            if(checkStorage != undefined) {
-                            setDate(<ListGroupItem>Not caught</ListGroupItem>);}
-
-                        }}>
+                <Button
+                    variant="warning"
+                    className="button button__let-go"
+                    onClick={() => {
+                        dispatch(letGoPokemon(props));
+                        const checkStorage = caughtPokemons.find(
+                            (item) => item.id === props.id
+                        );
+                        if (checkStorage != undefined) {
+                            setDate(<ListGroupItem>Not caught</ListGroupItem>);
+                        } else {
+                            alert("Firstly try to catch it!");
+                        }
+                    }}>
                     Let go
                 </Button>
             </div>

@@ -1,18 +1,19 @@
 import React from "react";
-import { propsBoolean, state_I } from "../../utils/interfaces";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 import { Nav } from "react-bootstrap";
 
-import "./Navigation.scss";
-import { useSelector } from "react-redux";
+import { propsBoolean, state_I } from "../../utils/interfaces";
 import { capitalize } from "../../utils/const";
+
+import "./Navigation.scss";
 
 const Navigation = (props: propsBoolean): JSX.Element => {
     const currentPokemon = useSelector(
         (state: state_I) => state.currentPokemon
     );
-
-    const disableToggle = (isDisabled: boolean): JSX.Element => {
+    const disableMenuButton = (isDisabled: boolean): JSX.Element => {
         if (isDisabled) {
             return (
                 <Nav.Link
@@ -43,7 +44,7 @@ const Navigation = (props: propsBoolean): JSX.Element => {
                 </Nav.Link>
             </Nav.Item>
             <Nav.Item className="navigation__item">
-                {disableToggle(props.isDisabled)}
+                {disableMenuButton(props.isDisabled)}
             </Nav.Item>
             <Nav.Item className="navigation__item">
                 <Nav.Link

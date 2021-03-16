@@ -6,11 +6,13 @@
     "scripts": {
         "test": "jest",
         "start": "webpack serve --config webpack.dev.config.ts",
-        "build": "webpack --config webpack.prod.config.ts"
+        "build": "webpack --config webpack.prod.config.ts",
+        "json-server": "json-server --watch db.json"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "axios": "^0.21.1",
         "bootstrap": "^4.6.0",
         "date-fns": "^2.19.0",
         "react": "^17.0.1",

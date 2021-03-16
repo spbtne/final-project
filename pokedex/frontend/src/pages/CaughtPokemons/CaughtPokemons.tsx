@@ -4,21 +4,23 @@ import { useSelector } from "react-redux";
 import { state_I } from "../../utils/interfaces";
 
 import PokemonCard from "../../components/PokemonCard/PokemonCard";
-import './CaughtPokemons.scss'
 
+import "./CaughtPokemons.scss";
 
 const CaughtPokemons = (): JSX.Element => {
-    const caughtPokemons = useSelector((state: state_I) => state.caughtPokemons);
+    const caughtPokemons = useSelector(
+        (state: state_I) => state.caughtPokemons
+    );
 
-	if (caughtPokemons.length === 0 ) {return (
-		<div className="caughtPokemons-wrapper">
-			<div className="caughtPokemons__title-wrapper">
-			<h1>
-				No caught pokemons yet
-			</h1>
-			</div>
-		</div>
-	)}
+    if (caughtPokemons.length === 0) {
+        return (
+            <div className="caughtPokemons-wrapper">
+                <div className="caughtPokemons__title-wrapper">
+                    <h1>No caught pokemons yet</h1>
+                </div>
+            </div>
+        );
+    }
     return (
         <div className="caughtPokemons-wrapper">
             <ul className="allPokemons__list">
@@ -35,7 +37,6 @@ const CaughtPokemons = (): JSX.Element => {
                     }
                 })}
             </ul>
-           
         </div>
     );
 };
