@@ -112,8 +112,6 @@ const PokemonInfo = (props: card_I): JSX.Element => {
                         );
                         if (checkStorage != undefined) {
                             setDate(<ListGroupItem>Not caught</ListGroupItem>);
-                        } else {
-                            alert("Firstly try to catch it!");
                         }
                     }}>
                     Let go
