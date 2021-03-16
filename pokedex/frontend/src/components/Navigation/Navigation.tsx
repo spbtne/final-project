@@ -51,7 +51,7 @@ const Navigation = (props: propsBoolean): JSX.Element => {
                     activeClassName="active"
                     as={NavLink}
                     to="/caughtPokemons">
-                    Сatched pokemons
+                    Caught Pokemons
                 </Nav.Link>
             </Nav.Item>
         </Nav>

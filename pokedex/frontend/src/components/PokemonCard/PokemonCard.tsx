@@ -1,14 +1,14 @@
-import * as React from "react";
-import { Button, Card } from "react-bootstrap";
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import { Button, Card } from "react-bootstrap";
+
 import { catchPokemon, moveToCurrentPokemon } from "../../actions/actions";
 import { capitalize } from "../../utils/const";
 import { card_I, state_I } from "../../utils/interfaces";
 
 import "./PokemonCard.scss";
-
-import { useHistory } from "react-router-dom";
-import { useState } from "react";
 
 const PokemonCard = (props: card_I): JSX.Element => {
     const history = useHistory();
@@ -22,7 +22,8 @@ const PokemonCard = (props: card_I): JSX.Element => {
 
     const [buttonDisabled, setButtonDisabled] = useState(() => {
         if (pokemonInCaught != undefined) {
-            return !pokemonInCaught.isFree;
+            setButtonText("Caught");
+            return true;
         }
     });
 
@@ -53,8 +54,8 @@ const PokemonCard = (props: card_I): JSX.Element => {
                     variant="primary"
                     onClick={() => {
                         dispatch(catchPokemon(props));
-                        setButtonText("Caught");
                         setButtonDisabled(true);
+                        setButtonText("Caught");
                     }}>
                     {buttonText}
                 </Button>
